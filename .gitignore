@@ -1,0 +1,6 @@
+# Ignora a pasta de cache do Visual Studio
+.vs/
+
+# Outros arquivos comuns de build que você deve ignorar
+[Bb]in/
+[Oo]bj/
