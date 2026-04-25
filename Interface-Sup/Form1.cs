@@ -47,6 +47,14 @@ namespace Interface_Sup
                     lblPres.Text = dados.Pres.ToString();
                     lblLevel.Text = dados.Level.ToString();
                     lblVib.Text = dados.Vib.ToString();
+
+                    if (dados.Temp > 80)
+                    {
+                        //$  => Jeito moderno de concatenar
+                        //[] => Visual para apresentar a data, aparentemente [20:31:22]
+                        string alerta = $"[{DateTime.Now:HH:mm:ss}] Temperatura acima do limite: {dados.Temp}°";
+                        richTextBoxAlertas.AppendText(alerta + Environment.NewLine );
+                    }
                 });
 
                 return System.Threading.Tasks.Task.CompletedTask;
@@ -57,11 +65,19 @@ namespace Interface_Sup
                 .WithTcpServer(txtBroker.Text, int.Parse(txtIP.Text))
                 .Build();
 
-            // Conexão
-            await clienteMqtt.ConnectAsync(opcoes);
-
-            // Assinatura do tópico
-            await clienteMqtt.SubscribeAsync(txtIP.Text);
+            // Try Catch para funcionalidade de conexão - altera o estado do texto e botão
+            try
+            {
+                await clienteMqtt.ConnectAsync(opcoes);
+                await clienteMqtt.SubscribeAsync(txtIP.Text);
+                lblConnection.Text = "Conectado"; 
+                lblConnection.ForeColor = Color.DarkGreen;
+            }
+            catch
+            {
+                lblConnection.Text = "Desconectado";
+                lblConnection.ForeColor = Color.Red;
+            }
         }
 
         public class DadosMqtt
