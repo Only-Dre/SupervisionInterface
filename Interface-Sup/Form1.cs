@@ -24,7 +24,7 @@ namespace Interface_Sup
             InitializeComponent();
         }
 
-        private async Task btnConnect_Click(object sender, EventArgs e)
+        private async void btnConnect_Click(object sender, EventArgs e)
         {
 
             // Criação do Cliente
@@ -72,6 +72,12 @@ namespace Interface_Sup
             public int Level { get; set; }
             public string Vib { get; set; }
 
+        }
+
+        // Funcionalidade de linkagem - website explicativo
+        private void btnSaibaMais_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://youtube.com");
         }
     }
 }
