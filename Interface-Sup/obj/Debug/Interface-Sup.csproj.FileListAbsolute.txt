@@ -1,0 +1,15 @@
+C:\Users\42599594847\SupervisionInterface\Interface-Sup\obj\Debug\Interface-Sup.csproj.AssemblyReference.cache
+C:\Users\42599594847\SupervisionInterface\Interface-Sup\obj\Debug\Interface_Sup.Form1.resources
+C:\Users\42599594847\SupervisionInterface\Interface-Sup\obj\Debug\Interface_Sup.Properties.Resources.resources
+C:\Users\42599594847\SupervisionInterface\Interface-Sup\obj\Debug\Interface-Sup.csproj.GenerateResource.cache
+C:\Users\42599594847\SupervisionInterface\Interface-Sup\obj\Debug\Interface-Sup.csproj.CoreCompileInputs.cache
+C:\Users\42599594847\SupervisionInterface\Interface-Sup\bin\Debug\Interface-Sup.exe.config
+C:\Users\42599594847\SupervisionInterface\Interface-Sup\bin\Debug\Interface-Sup.exe
+C:\Users\42599594847\SupervisionInterface\Interface-Sup\bin\Debug\Interface-Sup.pdb
+C:\Users\42599594847\SupervisionInterface\Interface-Sup\bin\Debug\MQTTnet.dll
+C:\Users\42599594847\SupervisionInterface\Interface-Sup\bin\Debug\Newtonsoft.Json.dll
+C:\Users\42599594847\SupervisionInterface\Interface-Sup\bin\Debug\MQTTnet.xml
+C:\Users\42599594847\SupervisionInterface\Interface-Sup\bin\Debug\Newtonsoft.Json.xml
+C:\Users\42599594847\SupervisionInterface\Interface-Sup\obj\Debug\Interfac.33D910BB.Up2Date
+C:\Users\42599594847\SupervisionInterface\Interface-Sup\obj\Debug\Interface-Sup.exe
+C:\Users\42599594847\SupervisionInterface\Interface-Sup\obj\Debug\Interface-Sup.pdb

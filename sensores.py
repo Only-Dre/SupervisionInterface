@@ -30,7 +30,7 @@ def on_connect(client, userdata, flags, rc):
     if rc != 0:
         print("Erro ao conectar")
 
-# def main():
+def main():
     client = mqtt.Client()
     client.on_connect = on_connect
 
