@@ -19,6 +19,7 @@ namespace Interface_Sup
     {
         // Criação do 'clienteMqtt'
         private IMqttClient clienteMqtt;
+
         public Form1()
         {
             InitializeComponent();
@@ -43,6 +44,10 @@ namespace Interface_Sup
                 Invoke((MethodInvoker)delegate
                 {
                     lblTemp.Text = dados.Temp.ToString();
+                    pBarTemp.Minimum = 0;
+                    pBarTemp.Maximum = 100;
+                    pBarTemp.Value = dados.Temp;
+
                     lblUmi.Text = dados.Umi.ToString();
                     lblPres.Text = dados.Pres.ToString();
                     lblLevel.Text = dados.Level.ToString();
