@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +20,8 @@ namespace Interface_Sup
         // Criação do 'clienteMqtt'
         private IMqttClient clienteMqtt;
 
+        // Definindo Tópico
+        private const string TOPICO = "industria/sensores";
         public Form1()
         {
             InitializeComponent();
@@ -43,22 +45,16 @@ namespace Interface_Sup
                 // Atualização in-screen
                 Invoke((MethodInvoker)delegate
                 {
-                    lblTemp.Text = dados.Temp.ToString();
-                    pBarTemp.Minimum = 0;
-                    pBarTemp.Maximum = 100;
-                    pBarTemp.Value = dados.Temp;
-
-                    lblUmi.Text = dados.Umi.ToString();
-                    lblPres.Text = dados.Pres.ToString();
-                    lblLevel.Text = dados.Level.ToString();
-                    lblVib.Text = dados.Vib.ToString();
+                    lblTemp.Text = $"{dados.Temp:F1} °C";
+                    lblUmi.Text = $"{dados.Umi:F1} %";
+                    lblPres.Text = $"{dados.Pres:F2} bar";
+                    lblVib.Text = $"{dados.Vib:F1} Hz";
+                    lblLevel.Text = $"{dados.Level:F1} %";
 
                     if (dados.Temp > 80)
                     {
-                        //$  => Jeito moderno de concatenar
-                        //[] => Visual para apresentar a data, aparentemente [20:31:22]
-                        string alerta = $"[{DateTime.Now:HH:mm:ss}] Temperatura acima do limite: {dados.Temp}°";
-                        richTextBoxAlertas.AppendText(alerta + Environment.NewLine );
+                        string alerta = $"[{DateTime.Now:HH:mm:ss}] Temperatura acima do limite: {dados.Temp:F1}°C";
+                        richTextBoxAlertas.AppendText(alerta + Environment.NewLine);
                     }
                 });
 
@@ -75,6 +71,7 @@ namespace Interface_Sup
             {
                 await clienteMqtt.ConnectAsync(opcoes);
                 await clienteMqtt.SubscribeAsync(txtIP.Text);
+
                 lblConnection.Text = "Conectado"; 
                 lblConnection.ForeColor = Color.DarkGreen;
             }
