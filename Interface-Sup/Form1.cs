@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 // Packages para comunicação
 using MQTTnet;
 using MQTTnet.Client;
@@ -20,8 +19,6 @@ namespace Interface_Sup
         // Criação do 'clienteMqtt'
         private IMqttClient clienteMqtt;
 
-        // Definindo Tópico
-        private const string TOPICO = "industria/sensores";
         public Form1()
         {
             InitializeComponent();
@@ -29,7 +26,6 @@ namespace Interface_Sup
 
         private async void btnConnect_Click(object sender, EventArgs e)
         {
-
             // Criação do Cliente
             var supervisorClient = new MqttFactory();
             clienteMqtt = supervisorClient.CreateMqttClient();
@@ -39,22 +35,46 @@ namespace Interface_Sup
             {
                 // Conversão de mensagem recebida para string
                 string mensagem = Encoding.UTF8.GetString(eMensagem.ApplicationMessage.Payload);
+
                 // Conversão JSON para object
                 DadosMqtt dados = JsonConvert.DeserializeObject<DadosMqtt>(mensagem);
 
                 // Atualização in-screen
                 Invoke((MethodInvoker)delegate
-                {
-                    lblTemp.Text = $"{dados.Temp:F1} °C";
-                    lblUmi.Text = $"{dados.Umi:F1} %";
-                    lblPres.Text = $"{dados.Pres:F2} bar";
-                    lblVib.Text = $"{dados.Vib:F1} Hz";
-                    lblLevel.Text = $"{dados.Level:F1} %";
+                {                
+                    // Barra de Temperatura
+                    pBarTemp.Minimum = 0;
+                    pBarTemp.Maximum = 100;
+                    pBarTemp.Value = Math.Min(100, (int)dados.Temp);
 
-                    if (dados.Temp > 80)
+                    lblUmi.Text = dados.Umi.ToString();
+                    lblPres.Text = dados.Pres.ToString();
+                    lblLevel.Text = dados.Level.ToString();
+                    lblVib.Text = dados.Vib.ToString();
+
+                    // Alarmes
+                    if (dados.Temp >= 75)
                     {
-                        string alerta = $"[{DateTime.Now:HH:mm:ss}] Temperatura acima do limite: {dados.Temp:F1}°C";
+                        string alerta = $"[{DateTime.Now:HH:mm:ss}] TEMPERATURA ALTA: {dados.Temp}°C";
                         richTextBoxAlertas.AppendText(alerta + Environment.NewLine);
+                        pBarTemp.BarColor = Color.Red; // muda cor da barra no alarme
+                    }
+                    else
+                    {
+                        pBarTemp.BarColor = Color.LimeGreen; // cor normal
+                    }
+
+                    pBarTemp.Invalidate(); // força redesenho da barra
+
+                    if (dados.Vib >= 18) // Vib >= 18mm/s
+                    {
+                        string alerta = $"[{DateTime.Now:HH:mm:ss}] VIBRAÇÃO ALTA: {dados.Vib} mm/s";
+                        richTextBoxAlertas.AppendText(alerta + Environment.NewLine);
+                        lblVib.ForeColor = Color.Red;
+                    }
+                    else
+                    {
+                        lblVib.ForeColor = Color.Black;
                     }
                 });
 
@@ -70,9 +90,8 @@ namespace Interface_Sup
             try
             {
                 await clienteMqtt.ConnectAsync(opcoes);
-                await clienteMqtt.SubscribeAsync(txtIP.Text);
-
-                lblConnection.Text = "Conectado"; 
+                await clienteMqtt.SubscribeAsync("industria/sensores");
+                lblConnection.Text = "Conectado";
                 lblConnection.ForeColor = Color.DarkGreen;
             }
             catch
@@ -84,18 +103,27 @@ namespace Interface_Sup
 
         public class DadosMqtt
         {
-            public int Temp { get; set; }
-            public string Umi { get; set; }
-            public int Pres { get; set; }
-            public int Level { get; set; }
-            public string Vib { get; set; }
-
+            public double Temp { get; set; }
+            public double Umi { get; set; }
+            public double Pres { get; set; }
+            public double Level { get; set; }
+            public double Vib { get; set; }
         }
 
         // Funcionalidade de linkagem - website explicativo
         private void btnSaibaMais_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://youtube.com");
+        }
+
+        private async void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            if (clienteMqtt != null && clienteMqtt.IsConnected)
+            {
+                await clienteMqtt.DisconnectAsync();
+                lblConnection.Text = "Desconectado";
+                lblConnection.ForeColor = Color.Red;
+            }
         }
     }
 }

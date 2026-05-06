@@ -38,16 +38,6 @@
             this.lblConectionStatus = new System.Windows.Forms.Label();
             this.btnConnect = new System.Windows.Forms.Button();
             this.btnDisconnect = new System.Windows.Forms.Button();
-            this.txtTemp = new System.Windows.Forms.Label();
-            this.txtUmi = new System.Windows.Forms.Label();
-            this.txtPress = new System.Windows.Forms.Label();
-            this.txtVib = new System.Windows.Forms.Label();
-            this.txtLevel = new System.Windows.Forms.Label();
-            this.lblTemp = new System.Windows.Forms.Label();
-            this.lblUmi = new System.Windows.Forms.Label();
-            this.lblPres = new System.Windows.Forms.Label();
-            this.lblLevel = new System.Windows.Forms.Label();
-            this.lblVib = new System.Windows.Forms.Label();
             this.btnSaibaMais = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
@@ -57,11 +47,26 @@
             this.richTextBoxAlertas = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.pBarTemp = new System.Windows.Forms.ProgressBar();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblTemp = new System.Windows.Forms.Label();
+            this.pBarTemp = new Interface_Sup.VerticalProgressBar();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblUmi = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblPres = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblLevel = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lblVib = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panelRegister.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblBroker
@@ -162,122 +167,13 @@
             this.btnDisconnect.TabIndex = 10;
             this.btnDisconnect.Text = "Desconectar";
             this.btnDisconnect.UseVisualStyleBackColor = true;
-            // 
-            // txtTemp
-            // 
-            this.txtTemp.AutoSize = true;
-            this.txtTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtTemp.ForeColor = System.Drawing.Color.SteelBlue;
-            this.txtTemp.Location = new System.Drawing.Point(17, 270);
-            this.txtTemp.Name = "txtTemp";
-            this.txtTemp.Size = new System.Drawing.Size(90, 17);
-            this.txtTemp.TabIndex = 11;
-            this.txtTemp.Text = "Temperatura";
-            // 
-            // txtUmi
-            // 
-            this.txtUmi.AutoSize = true;
-            this.txtUmi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtUmi.ForeColor = System.Drawing.Color.SteelBlue;
-            this.txtUmi.Location = new System.Drawing.Point(121, 270);
-            this.txtUmi.Name = "txtUmi";
-            this.txtUmi.Size = new System.Drawing.Size(64, 17);
-            this.txtUmi.TabIndex = 13;
-            this.txtUmi.Text = "Umidade";
-            // 
-            // txtPress
-            // 
-            this.txtPress.AutoSize = true;
-            this.txtPress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtPress.ForeColor = System.Drawing.Color.SteelBlue;
-            this.txtPress.Location = new System.Drawing.Point(198, 270);
-            this.txtPress.Name = "txtPress";
-            this.txtPress.Size = new System.Drawing.Size(60, 17);
-            this.txtPress.TabIndex = 14;
-            this.txtPress.Text = "Pressão";
-            // 
-            // txtVib
-            // 
-            this.txtVib.AutoSize = true;
-            this.txtVib.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtVib.ForeColor = System.Drawing.Color.SteelBlue;
-            this.txtVib.Location = new System.Drawing.Point(317, 270);
-            this.txtVib.Name = "txtVib";
-            this.txtVib.Size = new System.Drawing.Size(64, 17);
-            this.txtVib.TabIndex = 15;
-            this.txtVib.Text = "Vibração";
-            // 
-            // txtLevel
-            // 
-            this.txtLevel.AutoSize = true;
-            this.txtLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtLevel.ForeColor = System.Drawing.Color.SteelBlue;
-            this.txtLevel.Location = new System.Drawing.Point(267, 270);
-            this.txtLevel.Name = "txtLevel";
-            this.txtLevel.Size = new System.Drawing.Size(39, 17);
-            this.txtLevel.TabIndex = 16;
-            this.txtLevel.Text = "Nível";
-            // 
-            // lblTemp
-            // 
-            this.lblTemp.AutoSize = true;
-            this.lblTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblTemp.ForeColor = System.Drawing.Color.Black;
-            this.lblTemp.Location = new System.Drawing.Point(417, 238);
-            this.lblTemp.Name = "lblTemp";
-            this.lblTemp.Size = new System.Drawing.Size(16, 17);
-            this.lblTemp.TabIndex = 17;
-            this.lblTemp.Text = "0";
-            // 
-            // lblUmi
-            // 
-            this.lblUmi.AutoSize = true;
-            this.lblUmi.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblUmi.ForeColor = System.Drawing.Color.Black;
-            this.lblUmi.Location = new System.Drawing.Point(138, 318);
-            this.lblUmi.Name = "lblUmi";
-            this.lblUmi.Size = new System.Drawing.Size(16, 17);
-            this.lblUmi.TabIndex = 18;
-            this.lblUmi.Text = "0";
-            // 
-            // lblPres
-            // 
-            this.lblPres.AutoSize = true;
-            this.lblPres.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblPres.ForeColor = System.Drawing.Color.Black;
-            this.lblPres.Location = new System.Drawing.Point(225, 305);
-            this.lblPres.Name = "lblPres";
-            this.lblPres.Size = new System.Drawing.Size(16, 17);
-            this.lblPres.TabIndex = 19;
-            this.lblPres.Text = "0";
-            // 
-            // lblLevel
-            // 
-            this.lblLevel.AutoSize = true;
-            this.lblLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblLevel.ForeColor = System.Drawing.Color.Black;
-            this.lblLevel.Location = new System.Drawing.Point(279, 305);
-            this.lblLevel.Name = "lblLevel";
-            this.lblLevel.Size = new System.Drawing.Size(16, 17);
-            this.lblLevel.TabIndex = 20;
-            this.lblLevel.Text = "0";
-            // 
-            // lblVib
-            // 
-            this.lblVib.AutoSize = true;
-            this.lblVib.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblVib.ForeColor = System.Drawing.Color.Black;
-            this.lblVib.Location = new System.Drawing.Point(339, 305);
-            this.lblVib.Name = "lblVib";
-            this.lblVib.Size = new System.Drawing.Size(16, 17);
-            this.lblVib.TabIndex = 21;
-            this.lblVib.Text = "0";
+            this.btnDisconnect.Click += new System.EventHandler(this.btnDisconnect_Click);
             // 
             // btnSaibaMais
             // 
             this.btnSaibaMais.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnSaibaMais.ForeColor = System.Drawing.Color.SteelBlue;
-            this.btnSaibaMais.Location = new System.Drawing.Point(68, 73);
+            this.btnSaibaMais.Location = new System.Drawing.Point(41, 91);
             this.btnSaibaMais.Name = "btnSaibaMais";
             this.btnSaibaMais.Size = new System.Drawing.Size(114, 23);
             this.btnSaibaMais.TabIndex = 22;
@@ -310,7 +206,7 @@
             // 
             this.btnAuto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnAuto.ForeColor = System.Drawing.Color.SteelBlue;
-            this.btnAuto.Location = new System.Drawing.Point(3, 44);
+            this.btnAuto.Location = new System.Drawing.Point(41, 33);
             this.btnAuto.Name = "btnAuto";
             this.btnAuto.Size = new System.Drawing.Size(114, 23);
             this.btnAuto.TabIndex = 24;
@@ -321,7 +217,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.button1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.button1.Location = new System.Drawing.Point(126, 44);
+            this.button1.Location = new System.Drawing.Point(41, 62);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(114, 23);
             this.button1.TabIndex = 25;
@@ -333,9 +229,9 @@
             this.panelRegister.BackColor = System.Drawing.Color.AliceBlue;
             this.panelRegister.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelRegister.Controls.Add(this.richTextBoxAlertas);
-            this.panelRegister.Location = new System.Drawing.Point(531, 238);
+            this.panelRegister.Location = new System.Drawing.Point(572, 238);
             this.panelRegister.Name = "panelRegister";
-            this.panelRegister.Size = new System.Drawing.Size(257, 200);
+            this.panelRegister.Size = new System.Drawing.Size(216, 200);
             this.panelRegister.TabIndex = 26;
             // 
             // richTextBoxAlertas
@@ -361,7 +257,7 @@
             this.panel2.Controls.Add(this.lblConnection);
             this.panel2.Location = new System.Drawing.Point(12, 111);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(519, 121);
+            this.panel2.Size = new System.Drawing.Size(554, 121);
             this.panel2.TabIndex = 27;
             // 
             // panel3
@@ -370,18 +266,132 @@
             this.panel3.Controls.Add(this.btnAuto);
             this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.btnSaibaMais);
-            this.panel3.Location = new System.Drawing.Point(536, 111);
+            this.panel3.Location = new System.Drawing.Point(572, 111);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(247, 121);
+            this.panel3.Size = new System.Drawing.Size(211, 121);
             this.panel3.TabIndex = 28;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lblTemp);
+            this.groupBox1.Controls.Add(this.pBarTemp);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.groupBox1.Location = new System.Drawing.Point(12, 270);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(106, 163);
+            this.groupBox1.TabIndex = 30;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Temperatura";
+            // 
+            // lblTemp
+            // 
+            this.lblTemp.AutoSize = true;
+            this.lblTemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.lblTemp.ForeColor = System.Drawing.Color.Black;
+            this.lblTemp.Location = new System.Drawing.Point(71, 65);
+            this.lblTemp.Name = "lblTemp";
+            this.lblTemp.Size = new System.Drawing.Size(29, 31);
+            this.lblTemp.TabIndex = 1;
+            this.lblTemp.Text = "0";
             // 
             // pBarTemp
             // 
-            this.pBarTemp.Location = new System.Drawing.Point(51, 305);
+            this.pBarTemp.BarColor = System.Drawing.Color.LimeGreen;
+            this.pBarTemp.Location = new System.Drawing.Point(6, 22);
             this.pBarTemp.Name = "pBarTemp";
-            this.pBarTemp.RightToLeftLayout = true;
-            this.pBarTemp.Size = new System.Drawing.Size(30, 100);
-            this.pBarTemp.TabIndex = 29;
+            this.pBarTemp.Size = new System.Drawing.Size(48, 135);
+            this.pBarTemp.TabIndex = 0;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lblUmi);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.groupBox2.Location = new System.Drawing.Point(124, 270);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(106, 163);
+            this.groupBox2.TabIndex = 31;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Umidade";
+            // 
+            // lblUmi
+            // 
+            this.lblUmi.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblUmi.AutoSize = true;
+            this.lblUmi.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.lblUmi.ForeColor = System.Drawing.Color.Black;
+            this.lblUmi.Location = new System.Drawing.Point(38, 66);
+            this.lblUmi.Name = "lblUmi";
+            this.lblUmi.Size = new System.Drawing.Size(29, 31);
+            this.lblUmi.TabIndex = 0;
+            this.lblUmi.Text = "0";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.lblPres);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.groupBox3.Location = new System.Drawing.Point(236, 270);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(106, 163);
+            this.groupBox3.TabIndex = 32;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Pressão";
+            // 
+            // lblPres
+            // 
+            this.lblPres.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblPres.AutoSize = true;
+            this.lblPres.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.lblPres.ForeColor = System.Drawing.Color.Black;
+            this.lblPres.Location = new System.Drawing.Point(38, 66);
+            this.lblPres.Name = "lblPres";
+            this.lblPres.Size = new System.Drawing.Size(29, 31);
+            this.lblPres.TabIndex = 0;
+            this.lblPres.Text = "0";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.lblLevel);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.groupBox4.Location = new System.Drawing.Point(348, 270);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(106, 163);
+            this.groupBox4.TabIndex = 33;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Nível";
+            // 
+            // lblLevel
+            // 
+            this.lblLevel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblLevel.AutoSize = true;
+            this.lblLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.lblLevel.ForeColor = System.Drawing.Color.Black;
+            this.lblLevel.Location = new System.Drawing.Point(38, 66);
+            this.lblLevel.Name = "lblLevel";
+            this.lblLevel.Size = new System.Drawing.Size(29, 31);
+            this.lblLevel.TabIndex = 0;
+            this.lblLevel.Text = "0";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.lblVib);
+            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.groupBox5.Location = new System.Drawing.Point(460, 270);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(106, 163);
+            this.groupBox5.TabIndex = 34;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Vibração";
+            // 
+            // lblVib
+            // 
+            this.lblVib.AutoSize = true;
+            this.lblVib.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.lblVib.ForeColor = System.Drawing.Color.Black;
+            this.lblVib.Location = new System.Drawing.Point(38, 66);
+            this.lblVib.Name = "lblVib";
+            this.lblVib.Size = new System.Drawing.Size(29, 31);
+            this.lblVib.TabIndex = 0;
+            this.lblVib.Text = "0";
             // 
             // Form1
             // 
@@ -389,21 +399,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pBarTemp);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panelRegister);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.lblVib);
-            this.Controls.Add(this.lblLevel);
-            this.Controls.Add(this.lblPres);
-            this.Controls.Add(this.lblUmi);
-            this.Controls.Add(this.lblTemp);
-            this.Controls.Add(this.txtLevel);
-            this.Controls.Add(this.txtVib);
-            this.Controls.Add(this.txtPress);
-            this.Controls.Add(this.txtUmi);
-            this.Controls.Add(this.txtTemp);
             this.ForeColor = System.Drawing.SystemColors.Control;
             this.Name = "Form1";
             this.Text = "Form1";
@@ -413,8 +417,17 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -429,16 +442,6 @@
         private System.Windows.Forms.Label lblConectionStatus;
         private System.Windows.Forms.Button btnConnect;
         private System.Windows.Forms.Button btnDisconnect;
-        private System.Windows.Forms.Label txtTemp;
-        private System.Windows.Forms.Label txtUmi;
-        private System.Windows.Forms.Label txtPress;
-        private System.Windows.Forms.Label txtVib;
-        private System.Windows.Forms.Label txtLevel;
-        private System.Windows.Forms.Label lblTemp;
-        private System.Windows.Forms.Label lblUmi;
-        private System.Windows.Forms.Label lblPres;
-        private System.Windows.Forms.Label lblLevel;
-        private System.Windows.Forms.Label lblVib;
         private System.Windows.Forms.Button btnSaibaMais;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblTitle;
@@ -448,7 +451,17 @@
         private System.Windows.Forms.RichTextBox richTextBoxAlertas;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.ProgressBar pBarTemp;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblTemp;
+        private VerticalProgressBar pBarTemp;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lblUmi;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label lblPres;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label lblLevel;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label lblVib;
     }
 }
 
