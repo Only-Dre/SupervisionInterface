@@ -8,20 +8,20 @@ PORT = 1883
 TOPIC = "industria/sensores"
 
 dados = {
-    "temperatura":(20, 90),
-    "umidade": (30, 90),
-    "pressao": (1.0, 10.0),
-    "vibracao": (1.0, 10.0),
-    "nivel": (0, 100)
+    "temperatura":  (20, 90),
+    "umidade":      (30, 95),
+    "pressao":      (1.0, 10.0),
+    "vibracao":     (0.0, 25.0),
+    "nivel":        (0, 100)
 }
 
 def gerar_dados():
     return {
-        "temperatura": round(random.uniform(*dados["temperatura"]), 1),
-        "umidade": round(random.uniform(*dados["umidade"]), 1),
-        "pressao": round(random.uniform(*dados["pressao"]), 2),
-        "vibracao": round(random.uniform(*dados["vibracao"]), 1),
-        "nivel": round(random.uniform(*dados["nivel"]), 1),
+        "Temp":     round(random.uniform(*dados["temperatura"]), 1),
+        "Umi":      round(random.uniform(*dados["umidade"]), 1),
+        "Pres":     round(random.uniform(*dados["pressao"]), 2),
+        "Vib":      round(random.uniform(*dados["vibracao"]), 1),
+        "Level":    round(random.uniform(*dados["nivel"]), 1),
     }
 
 # Conecta o brocker 
