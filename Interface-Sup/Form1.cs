@@ -48,6 +48,7 @@ namespace Interface_Sup
                     pBarTemp.Maximum = 100;
                     pBarTemp.Value = Math.Min(100, (int)dados.Temp);
 
+                    lblTemp.Text = dados.Temp.ToString();
                     lblUmi.Text = dados.Umi.ToString();
                     lblPres.Text = dados.Pres.ToString();
                     lblLevel.Text = dados.Level.ToString();
@@ -91,7 +92,7 @@ namespace Interface_Sup
             try
             {
                 await clienteMqtt.ConnectAsync(opcoes);
-                await clienteMqtt.SubscribeAsync("industria/sensores");
+                await clienteMqtt.SubscribeAsync(txtTopic.Text);
                 lblConnection.Text = "Conectado";
                 lblConnection.ForeColor = Color.DarkGreen;
             }
@@ -128,21 +129,6 @@ namespace Interface_Sup
             await ConectarAsync();
         }
 
-        private void btnManual_Click(object sender, EventArgs e)
-        {
-            // Limpa os campos para preenchimento manual
-            txtBroker.Text = "";
-            txtTopic.Text = "";
-            txtIP.Text = "";
-
-            // Reset de alarmes
-            richTextBoxAlertas.Clear();
-
-            // Status volta para pendente
-            lblConnection.Text = "Pendente";
-            lblConnection.ForeColor = Color.Black;
-        }
-
         public class DadosMqtt
         {
             public double Temp { get; set; }
@@ -156,6 +142,27 @@ namespace Interface_Sup
         private void btnSaibaMais_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://youtube.com");
+        }
+
+        private async void btnManual_Click(object sender, EventArgs e)
+        {
+            // Desconecta se estiver conectado
+            if (clienteMqtt != null && clienteMqtt.IsConnected)
+            {
+                await clienteMqtt.DisconnectAsync();
+            }
+
+            // Limpa os campos para preenchimento manual
+            txtBroker.Text = "";
+            txtTopic.Text = "";
+            txtIP.Text = "";
+
+            // Reset de alarmes
+            richTextBoxAlertas.Clear();
+
+            // Status volta para pendente
+            lblConnection.Text = "Pendente";
+            lblConnection.ForeColor = Color.Black;
         }
     }
 }

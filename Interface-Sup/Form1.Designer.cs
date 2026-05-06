@@ -49,6 +49,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblTemp = new System.Windows.Forms.Label();
+            this.pBarTemp = new Interface_Sup.VerticalProgressBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblUmi = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -57,7 +58,6 @@
             this.lblLevel = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.lblVib = new System.Windows.Forms.Label();
-            this.pBarTemp = new Interface_Sup.VerticalProgressBar();
             this.panel1.SuspendLayout();
             this.panelRegister.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -224,6 +224,7 @@
             this.btnManual.TabIndex = 25;
             this.btnManual.Text = "Manual";
             this.btnManual.UseVisualStyleBackColor = true;
+            this.btnManual.Click += new System.EventHandler(this.btnManual_Click);
             // 
             // panelRegister
             // 
@@ -294,6 +295,14 @@
             this.lblTemp.Size = new System.Drawing.Size(29, 31);
             this.lblTemp.TabIndex = 1;
             this.lblTemp.Text = "0";
+            // 
+            // pBarTemp
+            // 
+            this.pBarTemp.BarColor = System.Drawing.Color.LimeGreen;
+            this.pBarTemp.Location = new System.Drawing.Point(6, 22);
+            this.pBarTemp.Name = "pBarTemp";
+            this.pBarTemp.Size = new System.Drawing.Size(48, 135);
+            this.pBarTemp.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -385,14 +394,6 @@
             this.lblVib.Size = new System.Drawing.Size(29, 31);
             this.lblVib.TabIndex = 0;
             this.lblVib.Text = "0";
-            // 
-            // pBarTemp
-            // 
-            this.pBarTemp.BarColor = System.Drawing.Color.LimeGreen;
-            this.pBarTemp.Location = new System.Drawing.Point(6, 22);
-            this.pBarTemp.Name = "pBarTemp";
-            this.pBarTemp.Size = new System.Drawing.Size(48, 135);
-            this.pBarTemp.TabIndex = 0;
             // 
             // Form1
             // 
