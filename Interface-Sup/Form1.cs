@@ -141,7 +141,7 @@ namespace Interface_Sup
         // Funcionalidade de linkagem - website explicativo
         private void btnSaibaMais_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://youtube.com");
+            System.Diagnostics.Process.Start("https://documentation-intsup.netlify.app");
         }
 
         private async void btnManual_Click(object sender, EventArgs e)
