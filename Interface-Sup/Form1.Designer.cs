@@ -212,6 +212,7 @@
             this.btnAuto.TabIndex = 24;
             this.btnAuto.Text = "Automático";
             this.btnAuto.UseVisualStyleBackColor = true;
+            this.btnAuto.Click += new System.EventHandler(this.btnAuto_Click);
             // 
             // button1
             // 

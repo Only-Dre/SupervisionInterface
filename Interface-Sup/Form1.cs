@@ -24,7 +24,8 @@ namespace Interface_Sup
             InitializeComponent();
         }
 
-        private async void btnConnect_Click(object sender, EventArgs e)
+        // Lógica de conexão extraída para ser reutilizada
+        private async Task ConectarAsync()
         {
             // Criação do Cliente
             var supervisorClient = new MqttFactory();
@@ -41,7 +42,7 @@ namespace Interface_Sup
 
                 // Atualização in-screen
                 Invoke((MethodInvoker)delegate
-                {                
+                {
                     // Barra de Temperatura
                     pBarTemp.Minimum = 0;
                     pBarTemp.Maximum = 100;
@@ -101,6 +102,47 @@ namespace Interface_Sup
             }
         }
 
+        private async void btnConnect_Click(object sender, EventArgs e)
+        {
+            await ConectarAsync();
+        }
+
+        private async void btnDisconnect_Click(object sender, EventArgs e)
+        {
+            if (clienteMqtt != null && clienteMqtt.IsConnected)
+            {
+                await clienteMqtt.DisconnectAsync();
+                lblConnection.Text = "Desconectado";
+                lblConnection.ForeColor = Color.Red;
+            }
+        }
+
+        private async void btnAuto_Click(object sender, EventArgs e)
+        {
+            // Preenche os campos automaticamente
+            txtBroker.Text = "localhost";
+            txtTopic.Text = "industria/sensores";
+            txtIP.Text = "1883";
+
+            // Conecta automaticamente - chama a Task
+            await ConectarAsync();
+        }
+
+        private void btnManual_Click(object sender, EventArgs e)
+        {
+            // Limpa os campos para preenchimento manual
+            txtBroker.Text = "";
+            txtTopic.Text = "";
+            txtIP.Text = "";
+
+            // Reset de alarmes
+            richTextBoxAlertas.Clear();
+
+            // Status volta para pendente
+            lblConnection.Text = "Pendente";
+            lblConnection.ForeColor = Color.Black;
+        }
+
         public class DadosMqtt
         {
             public double Temp { get; set; }
@@ -114,16 +156,6 @@ namespace Interface_Sup
         private void btnSaibaMais_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://youtube.com");
-        }
-
-        private async void btnDisconnect_Click(object sender, EventArgs e)
-        {
-            if (clienteMqtt != null && clienteMqtt.IsConnected)
-            {
-                await clienteMqtt.DisconnectAsync();
-                lblConnection.Text = "Desconectado";
-                lblConnection.ForeColor = Color.Red;
-            }
         }
     }
 }
