@@ -58,6 +58,7 @@
             this.lblLevel = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.lblVib = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panelRegister.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -128,7 +129,7 @@
             this.lblConnection.AutoSize = true;
             this.lblConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblConnection.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblConnection.Location = new System.Drawing.Point(167, 86);
+            this.lblConnection.Location = new System.Drawing.Point(168, 91);
             this.lblConnection.Name = "lblConnection";
             this.lblConnection.Size = new System.Drawing.Size(78, 20);
             this.lblConnection.TabIndex = 7;
@@ -139,7 +140,7 @@
             this.lblConectionStatus.AutoSize = true;
             this.lblConectionStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.lblConectionStatus.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblConectionStatus.Location = new System.Drawing.Point(12, 86);
+            this.lblConectionStatus.Location = new System.Drawing.Point(13, 91);
             this.lblConectionStatus.Name = "lblConectionStatus";
             this.lblConectionStatus.Size = new System.Drawing.Size(149, 20);
             this.lblConectionStatus.TabIndex = 8;
@@ -161,7 +162,7 @@
             // 
             this.btnDisconnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnDisconnect.ForeColor = System.Drawing.Color.SteelBlue;
-            this.btnDisconnect.Location = new System.Drawing.Point(377, 56);
+            this.btnDisconnect.Location = new System.Drawing.Point(377, 91);
             this.btnDisconnect.Name = "btnDisconnect";
             this.btnDisconnect.Size = new System.Drawing.Size(114, 23);
             this.btnDisconnect.TabIndex = 10;
@@ -173,7 +174,7 @@
             // 
             this.btnSaibaMais.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnSaibaMais.ForeColor = System.Drawing.Color.SteelBlue;
-            this.btnSaibaMais.Location = new System.Drawing.Point(41, 91);
+            this.btnSaibaMais.Location = new System.Drawing.Point(48, 108);
             this.btnSaibaMais.Name = "btnSaibaMais";
             this.btnSaibaMais.Size = new System.Drawing.Size(114, 23);
             this.btnSaibaMais.TabIndex = 22;
@@ -196,7 +197,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F);
             this.lblTitle.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblTitle.Location = new System.Drawing.Point(142, 17);
+            this.lblTitle.Location = new System.Drawing.Point(155, 23);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(465, 54);
             this.lblTitle.TabIndex = 0;
@@ -206,7 +207,7 @@
             // 
             this.btnAuto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnAuto.ForeColor = System.Drawing.Color.SteelBlue;
-            this.btnAuto.Location = new System.Drawing.Point(41, 33);
+            this.btnAuto.Location = new System.Drawing.Point(48, 42);
             this.btnAuto.Name = "btnAuto";
             this.btnAuto.Size = new System.Drawing.Size(114, 23);
             this.btnAuto.TabIndex = 24;
@@ -218,7 +219,7 @@
             // 
             this.btnManual.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnManual.ForeColor = System.Drawing.Color.SteelBlue;
-            this.btnManual.Location = new System.Drawing.Point(41, 62);
+            this.btnManual.Location = new System.Drawing.Point(48, 71);
             this.btnManual.Name = "btnManual";
             this.btnManual.Size = new System.Drawing.Size(114, 23);
             this.btnManual.TabIndex = 25;
@@ -231,9 +232,9 @@
             this.panelRegister.BackColor = System.Drawing.Color.AliceBlue;
             this.panelRegister.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelRegister.Controls.Add(this.richTextBoxAlertas);
-            this.panelRegister.Location = new System.Drawing.Point(572, 238);
+            this.panelRegister.Location = new System.Drawing.Point(572, 256);
             this.panelRegister.Name = "panelRegister";
-            this.panelRegister.Size = new System.Drawing.Size(216, 200);
+            this.panelRegister.Size = new System.Drawing.Size(216, 182);
             this.panelRegister.TabIndex = 26;
             // 
             // richTextBoxAlertas
@@ -259,18 +260,19 @@
             this.panel2.Controls.Add(this.lblConnection);
             this.panel2.Location = new System.Drawing.Point(12, 111);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(554, 121);
+            this.panel2.Size = new System.Drawing.Size(554, 138);
             this.panel2.TabIndex = 27;
             // 
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.btnAuto);
             this.panel3.Controls.Add(this.btnManual);
             this.panel3.Controls.Add(this.btnSaibaMais);
             this.panel3.Location = new System.Drawing.Point(572, 111);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(211, 121);
+            this.panel3.Size = new System.Drawing.Size(211, 138);
             this.panel3.TabIndex = 28;
             // 
             // groupBox1
@@ -395,6 +397,17 @@
             this.lblVib.TabIndex = 0;
             this.lblVib.Text = "0";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(44, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(126, 20);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Painel de modos";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -419,6 +432,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -464,6 +478,7 @@
         private System.Windows.Forms.Label lblLevel;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label lblVib;
+        private System.Windows.Forms.Label label1;
     }
 }
 

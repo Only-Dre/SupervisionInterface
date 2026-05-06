@@ -14,9 +14,10 @@ namespace Interface_Sup
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            Rectangle rect = new Rectangle(0, 0, this.Width, this.Height);
-            double porcentagem = (double)(this.Value - this.Minimum) / (this.Maximum - this.Minimum);
-            int alturaFill = (int)(rect.Height * porcentagem);
+            // Definição de forma do Retângulo
+            Rectangle rect = new Rectangle(0, 0, this.Width, this.Height); // Define Largura e Altura
+            double porcentagem = (double)(this.Value - this.Minimum) / (this.Maximum - this.Minimum); // Definição dos valores aplicados à barra de Progresso
+            int alturaFill = (int)(rect.Height * porcentagem); // Limite de preenchimento do topo da barra
 
             // Fundo
             e.Graphics.FillRectangle(Brushes.LightGray, rect);
