@@ -42,14 +42,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnAuto = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnManual = new System.Windows.Forms.Button();
             this.panelRegister = new System.Windows.Forms.Panel();
             this.richTextBoxAlertas = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblTemp = new System.Windows.Forms.Label();
-            this.pBarTemp = new Interface_Sup.VerticalProgressBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.lblUmi = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -58,6 +57,7 @@
             this.lblLevel = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.lblVib = new System.Windows.Forms.Label();
+            this.pBarTemp = new Interface_Sup.VerticalProgressBar();
             this.panel1.SuspendLayout();
             this.panelRegister.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -214,16 +214,16 @@
             this.btnAuto.UseVisualStyleBackColor = true;
             this.btnAuto.Click += new System.EventHandler(this.btnAuto_Click);
             // 
-            // button1
+            // btnManual
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.button1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.button1.Location = new System.Drawing.Point(41, 62);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Manual";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnManual.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btnManual.ForeColor = System.Drawing.Color.SteelBlue;
+            this.btnManual.Location = new System.Drawing.Point(41, 62);
+            this.btnManual.Name = "btnManual";
+            this.btnManual.Size = new System.Drawing.Size(114, 23);
+            this.btnManual.TabIndex = 25;
+            this.btnManual.Text = "Manual";
+            this.btnManual.UseVisualStyleBackColor = true;
             // 
             // panelRegister
             // 
@@ -265,7 +265,7 @@
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.btnAuto);
-            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.btnManual);
             this.panel3.Controls.Add(this.btnSaibaMais);
             this.panel3.Location = new System.Drawing.Point(572, 111);
             this.panel3.Name = "panel3";
@@ -294,14 +294,6 @@
             this.lblTemp.Size = new System.Drawing.Size(29, 31);
             this.lblTemp.TabIndex = 1;
             this.lblTemp.Text = "0";
-            // 
-            // pBarTemp
-            // 
-            this.pBarTemp.BarColor = System.Drawing.Color.LimeGreen;
-            this.pBarTemp.Location = new System.Drawing.Point(6, 22);
-            this.pBarTemp.Name = "pBarTemp";
-            this.pBarTemp.Size = new System.Drawing.Size(48, 135);
-            this.pBarTemp.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -394,6 +386,14 @@
             this.lblVib.TabIndex = 0;
             this.lblVib.Text = "0";
             // 
+            // pBarTemp
+            // 
+            this.pBarTemp.BarColor = System.Drawing.Color.LimeGreen;
+            this.pBarTemp.Location = new System.Drawing.Point(6, 22);
+            this.pBarTemp.Name = "pBarTemp";
+            this.pBarTemp.Size = new System.Drawing.Size(48, 135);
+            this.pBarTemp.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -447,7 +447,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnAuto;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnManual;
         private System.Windows.Forms.Panel panelRegister;
         private System.Windows.Forms.RichTextBox richTextBoxAlertas;
         private System.Windows.Forms.Panel panel2;
