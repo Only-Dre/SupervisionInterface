@@ -189,6 +189,18 @@
             color: #9b59b6;
         }
 
+        .alarm-box {
+            background-color: #fdf2f2;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .alarm-box strong {
+            color: #c0392b;
+        }
+
         .reference {
             background-color: #fef9e7;
             border-left: 4px solid #f39c12;
@@ -293,6 +305,7 @@
             <li><a href="#aplicacao">Aplicação C#</a></li>
             <li><a href="#componentes">Componentes</a></li>
             <li><a href="#dados">Dados Recebidos</a></li>
+            <li><a href="#alarmes">Alarmes</a></li>
             <li><a href="#referencias">Referências</a></li>
         </ul>
     </nav>
@@ -301,7 +314,7 @@
         <!-- Seção 1: Arquitetura -->
         <section id="arquitetura">
             <h2>1. Arquitetura do Sistema</h2>
-            
+
             <p>O sistema de monitoramento implementado segue uma arquitetura cliente-servidor baseada em MQTT, onde um simulador Python publica dados que são consumidos por uma aplicação cliente desenvolvida em C# (Windows Forms). A comunicação é realizada através de um broker MQTT que atua como intermediário central.</p>
 
             <div class="architecture-box">
@@ -311,15 +324,15 @@
             <h3>Componentes da Arquitetura:</h3>
 
             <div class="concept-box">
-                <strong>Simulador Python (Fonte de Dados):</strong> Publica dados em formato JSON contendo contador, temperatura e um novo sinal. Os dados são enviados a cada 2 segundos para o broker MQTT no tópico <code>industria/sensores</code>.
+                <strong>Simulador Python (Fonte de Dados):</strong> Publica dados em formato JSON contendo os valores de Temperatura, Umidade, Pressão, Nível e Vibração. Os dados são enviados periodicamente para o broker MQTT no tópico configurado pelo usuário (padrão: <code>industria/sensores</code>).
             </div>
 
             <div class="concept-box">
-                <strong>Broker MQTT:</strong> Servidor central que recebe as mensagens publicadas pelo simulador Python e as distribui para todos os clientes (subscribers) conectados. No projeto, o broker está configurado no IP <code>10.110.18.11</code> na porta <code>1883</code>.
+                <strong>Broker MQTT:</strong> Servidor central que recebe as mensagens publicadas pelo simulador Python e as distribui para todos os clientes (subscribers) conectados. O endereço e porta do broker são configurados diretamente na interface da aplicação. A configuração automática aponta para <code>localhost</code> na porta <code>1883</code>.
             </div>
 
             <div class="concept-box">
-                <strong>Cliente C# (Windows Forms):</strong> Aplicação desenvolvida em C# com interface gráfica usando Windows Forms. Conecta-se ao broker MQTT, assina o tópico de dados e exibe as informações recebidas em tempo real, além de manter um histórico de leituras.
+                <strong>Cliente C# (Windows Forms):</strong> Aplicação desenvolvida em C# com interface gráfica usando Windows Forms. Conecta-se ao broker MQTT, assina o tópico configurado e exibe as informações recebidas em tempo real. Possui sistema de alarmes visuais para condições críticas de temperatura e vibração.
             </div>
 
             <h3>Dados Monitorados:</h3>
@@ -331,22 +344,34 @@
                     <th>Propriedade JSON</th>
                 </tr>
                 <tr>
-                    <td>Contador</td>
-                    <td>int</td>
-                    <td>Número sequencial de mensagens recebidas</td>
-                    <td><code>contador</code></td>
-                </tr>
-                <tr>
                     <td>Temperatura</td>
                     <td>double</td>
-                    <td>Valor de temperatura em °C com precisão de 1 casa decimal</td>
-                    <td><code>temperatura</code></td>
+                    <td>Valor de temperatura em °C</td>
+                    <td><code>Temp</code></td>
                 </tr>
                 <tr>
-                    <td>Novo Sinal</td>
-                    <td>int</td>
-                    <td>Terceiro parâmetro adicionado conforme atividade prática</td>
-                    <td><code>novo_sinal</code></td>
+                    <td>Umidade</td>
+                    <td>double</td>
+                    <td>Valor de umidade relativa</td>
+                    <td><code>Umi</code></td>
+                </tr>
+                <tr>
+                    <td>Pressão</td>
+                    <td>double</td>
+                    <td>Valor de pressão</td>
+                    <td><code>Pres</code></td>
+                </tr>
+                <tr>
+                    <td>Nível</td>
+                    <td>double</td>
+                    <td>Valor de nível do processo</td>
+                    <td><code>Level</code></td>
+                </tr>
+                <tr>
+                    <td>Vibração</td>
+                    <td>double</td>
+                    <td>Valor de vibração em mm/s</td>
+                    <td><code>Vib</code></td>
                 </tr>
             </table>
         </section>
@@ -360,50 +385,47 @@
             <h3>Conceitos Fundamentais:</h3>
 
             <div class="concept-box">
-                <strong>Broker:</strong> Servidor central que gerencia todas as conexões MQTT. Recebe mensagens de publishers e as distribui para subscribers interessados. No projeto: <code>10.110.18.11:1883</code>
+                <strong>Broker:</strong> Servidor central que gerencia todas as conexões MQTT. Recebe mensagens de publishers e as distribui para subscribers interessados. O endereço e a porta são configurados pelo usuário na interface da aplicação.
             </div>
 
             <div class="concept-box">
-                <strong>Tópico (Topic):</strong> String hierárquica que funciona como canal de comunicação. Publishers enviam mensagens para tópicos, e subscribers recebem ao se inscreverem. No projeto: <code>industria/sensores</code>
+                <strong>Tópico (Topic):</strong> String hierárquica que funciona como canal de comunicação. Publishers enviam mensagens para tópicos, e subscribers recebem ao se inscreverem. O tópico padrão configurado automaticamente é <code>industria/sensores</code>.
             </div>
 
             <div class="concept-box">
-                <strong>Publisher:</strong> Cliente que publica mensagens em um tópico. No projeto: Simulador Python que envia dados de sensores.
+                <strong>Publisher:</strong> Cliente que publica mensagens em um tópico. No projeto: Simulador Python que envia dados de sensores industriais.
             </div>
 
             <div class="concept-box">
-                <strong>Subscriber:</strong> Cliente que se inscreve em tópicos para receber mensagens. No projeto: Aplicação C# que consome os dados.
+                <strong>Subscriber:</strong> Cliente que se inscreve em tópicos para receber mensagens. No projeto: Aplicação C# que consome e exibe os dados em tempo real.
             </div>
 
             <h3>Configuração MQTT do Projeto:</h3>
             <table>
                 <tr>
                     <th>Parâmetro</th>
-                    <th>Valor</th>
+                    <th>Valor (Automático)</th>
+                    <th>Observação</th>
                 </tr>
                 <tr>
-                    <td>Broker IP</td>
-                    <td><code>10.110.18.11</code></td>
+                    <td>Broker</td>
+                    <td><code>localhost</code></td>
+                    <td>Configurável manualmente via campo <code>txtBroker</code></td>
                 </tr>
                 <tr>
                     <td>Porta</td>
                     <td><code>1883</code> (padrão MQTT)</td>
+                    <td>Configurável manualmente via campo <code>txtIP</code></td>
                 </tr>
                 <tr>
                     <td>Tópico</td>
                     <td><code>industria/sensores</code></td>
+                    <td>Configurável manualmente via campo <code>txtTopic</code></td>
                 </tr>
                 <tr>
                     <td>Formato de Dados</td>
                     <td>JSON</td>
-                </tr>
-                <tr>
-                    <td>Intervalo de Publicação</td>
-                    <td>2 segundos</td>
-                </tr>
-                <tr>
-                    <td>Sessão Limpa</td>
-                    <td>Habilitada</td>
+                    <td>Desserializado com Newtonsoft.Json</td>
                 </tr>
             </table>
 
@@ -422,90 +444,104 @@
         <section id="aplicacao">
             <h2>3. Aplicação Cliente em C# (Windows Forms)</h2>
 
-            <p>A aplicação cliente foi desenvolvida em C# utilizando Windows Forms, uma framework de desktop tradicional da Microsoft. A aplicação conecta-se ao broker MQTT, recebe dados em tempo real e os exibe em uma interface gráfica intuitiva.</p>
+            <p>A aplicação cliente foi desenvolvida em C# utilizando Windows Forms. Conecta-se ao broker MQTT, recebe dados em tempo real, exibe as informações em uma interface gráfica e dispara alarmes visuais para condições críticas de operação.</p>
 
             <h3>Tecnologias Utilizadas:</h3>
             <ul>
-                <li><strong>.NET 10.0 (Windows):</strong> Framework de desenvolvimento moderno da Microsoft</li>
+                <li><strong>.NET (Windows):</strong> Framework de desenvolvimento da Microsoft</li>
                 <li><strong>Windows Forms:</strong> Framework para criação de interfaces gráficas desktop</li>
-                <li><strong>MQTTnet:</strong> Biblioteca C# para comunicação MQTT</li>
+                <li><strong>MQTTnet:</strong> Biblioteca C# para comunicação MQTT (via <code>MqttFactory</code> e <code>IMqttClient</code>)</li>
                 <li><strong>Newtonsoft.Json (Json.NET):</strong> Biblioteca para desserialização de JSON</li>
             </ul>
 
-            <h3>Fluxo de Funcionamento:</h3>
-            <ol>
-                <li>Usuário insere as configurações MQTT (Broker, Porta, Tópico) na interface</li>
-                <li>Usuário clica no botão "Conectar"</li>
-                <li>Aplicação cria um cliente MQTT e estabelece conexão com o broker</li>
-                <li>Aplicação se inscreve no tópico <code>industria/sensores</code></li>
-                <li>Broker começa a enviar mensagens para a aplicação</li>
-                <li>Cada mensagem recebida é desserializada de JSON para objeto C#</li>
-                <li>Dados são exibidos em labels na interface (thread-safe)</li>
-                <li>Histórico de leituras é mantido em uma lista</li>
-                <li>Usuário pode desconectar clicando em "Desconectar"</li>
-            </ol>
-
-            <h3>Classe de Dados (DadosMqtt):</h3>
-            <div class="code-box">
-                <strong>Estrutura JSON recebida:</strong><br><br>
-                {<br>
-                &nbsp;&nbsp;"contador": 1,<br>
-                &nbsp;&nbsp;"temperatura": 25.5,<br>
-                &nbsp;&nbsp;"novo_sinal": 42<br>
-                }<br><br>
-                <strong>Mapeamento C#:</strong><br>
-                Contador → int<br>
-                Temperatura → double<br>
-                NovoSinal → int
+            <h3>Modos de Conexão:</h3>
+            <div class="concept-box">
+                <strong>Conexão Automática (btnAuto):</strong> Preenche automaticamente os campos <code>txtBroker</code> com <code>localhost</code>, <code>txtTopic</code> com <code>industria/sensores</code> e <code>txtIP</code> com <code>1883</code>, e já aciona a conexão em seguida.
+            </div>
+            <div class="concept-box">
+                <strong>Conexão Manual (btnManual):</strong> Desconecta qualquer sessão ativa, limpa todos os campos de configuração e o painel de alertas, e redefine o status de conexão para "Pendente" — aguardando preenchimento manual pelo usuário.
+            </div>
+            <div class="concept-box">
+                <strong>Desconexão (btnDisconnect):</strong> Encerra a conexão com o broker se o cliente estiver conectado e atualiza o indicador de status para "Desconectado".
             </div>
 
+            <h3>Fluxo de Funcionamento:</h3>
+            <ol>
+                <li>Usuário configura o Broker, Porta e Tópico (manualmente ou via botão Automático)</li>
+                <li>Usuário clica em "Conectar" ou usa a conexão automática</li>
+                <li>Aplicação instancia um <code>IMqttClient</code> via <code>MqttFactory</code> e registra o handler de recebimento de mensagens</li>
+                <li>Aplicação conecta ao broker e assina o tópico configurado</li>
+                <li>Cada mensagem recebida é decodificada de UTF-8, desserializada de JSON para o objeto <code>DadosMqtt</code></li>
+                <li>Os valores são exibidos nos labels correspondentes de forma thread-safe via <code>Invoke()</code></li>
+                <li>Alarmes são verificados e registrados no <code>richTextBoxAlertas</code> com timestamp</li>
+                <li>A barra de progresso de temperatura (<code>pBarTemp</code>) é atualizada e redesenhada</li>
+            </ol>
+
             <h3>Tratamento de Thread-Safety:</h3>
-            <p>Como a aplicação recebe mensagens em uma thread separada (thread do MQTT), a atualização da interface gráfica é feita de forma thread-safe utilizando <code>Invoke()</code> com <code>MethodInvoker</code>. Isso garante que todas as atualizações de UI ocorram na thread principal da aplicação.</p>
+            <p>Como a aplicação recebe mensagens em uma thread separada (thread do MQTT), a atualização da interface gráfica é feita de forma thread-safe utilizando <code>Invoke(MethodInvoker)</code>. Isso garante que todas as atualizações de UI ocorram na thread principal da aplicação, evitando exceções de acesso cruzado.</p>
+
+            <h3>Tratamento de Erros de Conexão:</h3>
+            <p>A lógica de conexão está encapsulada em um bloco <code>try/catch</code>: em caso de sucesso, o label <code>lblConnection</code> exibe "Conectado" em verde escuro; em caso de falha, exibe "Desconectado" em vermelho.</p>
         </section>
 
         <!-- Seção 4: Componentes da Interface -->
         <section id="componentes">
             <h2>4. Componentes da Interface Gráfica</h2>
 
-            <p>A interface foi organizada em três painéis principais, cada um com uma função específica no sistema de monitoramento.</p>
+            <p>A interface é composta por controles de configuração de conexão, indicadores de leitura em tempo real, uma barra de progresso vertical customizada para temperatura e um painel de alertas.</p>
 
-            <h3>Painel 1: Cabeçalho (Header)</h3>
+            <h3>Campos de Configuração MQTT</h3>
             <div class="concept-box">
-                <strong>Função:</strong> Exibir o título da aplicação<br>
-                <strong>Componentes:</strong> Label com texto "Cliente MQTT" em fonte grande e negrita<br>
-                <strong>Estilo:</strong> Fundo azul claro (SystemColors.ActiveCaption)
-            </div>
-
-            <h3>Painel 2: Configurações MQTT</h3>
-            <div class="concept-box">
-                <strong>Função:</strong> Permitir configuração de conexão ao broker<br>
                 <strong>Componentes:</strong>
                 <ul>
-                    <li><code>txtBrocker</code> - TextBox para endereço IP do broker (ex: 10.110.18.11)</li>
-                    <li><code>txtPorta</code> - TextBox para porta MQTT (ex: 1883)</li>
-                    <li><code>txtTopico</code> - TextBox para tópico MQTT (ex: industria/sensores)</li>
-                    <li><code>btnConectar</code> - Botão para iniciar conexão</li>
-                    <li><code>btnDesconectar</code> - Botão para encerrar conexão</li>
+                    <li><code>txtBroker</code> — Endereço do broker MQTT (ex: <code>localhost</code>)</li>
+                    <li><code>txtIP</code> — Porta de conexão (ex: <code>1883</code>)</li>
+                    <li><code>txtTopic</code> — Tópico MQTT a ser assinado (ex: <code>industria/sensores</code>)</li>
+                    <li><code>lblConnection</code> — Indicador de status: <em>Pendente</em>, <em>Conectado</em> ou <em>Desconectado</em></li>
                 </ul>
             </div>
 
-            <h3>Painel 3: Dados Recebidos</h3>
+            <h3>Botões de Ação</h3>
             <div class="concept-box">
-                <strong>Função:</strong> Exibir os dados recebidos do broker em tempo real<br>
                 <strong>Componentes:</strong>
                 <ul>
-                    <li><code>lblContador</code> - Label exibindo o contador (int)</li>
-                    <li><code>lblTemperatura</code> - Label exibindo temperatura formatada com 1 casa decimal (°C)</li>
-                    <li><code>lblNovoSinal</code> - Label exibindo o novo sinal (int)</li>
+                    <li><code>btnConnect</code> — Conecta ao broker com os dados informados nos campos</li>
+                    <li><code>btnDisconnect</code> — Desconecta do broker</li>
+                    <li><code>btnAuto</code> — Preenche automaticamente os campos e conecta</li>
+                    <li><code>btnManual</code> — Limpa campos, reseta alertas e status para preenchimento manual</li>
+                    <li><code>btnSaibaMais</code> — Abre esta documentação no navegador</li>
                 </ul>
-                <strong>Estilo:</strong> Fonte grande (21-25pt) e negrita para destaque
             </div>
 
-            <h3>Histórico de Leituras:</h3>
+            <h3>Indicadores de Sensores</h3>
             <div class="concept-box">
-                <strong>Componente:</strong> <code>lstHistorico</code> - ListBox que mantém registro de todas as mensagens recebidas<br>
-                <strong>Formato:</strong> [HH:mm:ss] Contador: X | Temp: Y °C | Sinal: Z<br>
-                <strong>Comportamento:</strong> Novas leituras são inseridas no topo da lista (Insert(0, ...))
+                <strong>Componentes (labels):</strong>
+                <ul>
+                    <li><code>lblTemp</code> — Exibe o valor de Temperatura em °C</li>
+                    <li><code>lblUmi</code> — Exibe o valor de Umidade</li>
+                    <li><code>lblPres</code> — Exibe o valor de Pressão</li>
+                    <li><code>lblLevel</code> — Exibe o valor de Nível</li>
+                    <li><code>lblVib</code> — Exibe o valor de Vibração em mm/s (muda para vermelho em alarme)</li>
+                </ul>
+            </div>
+
+            <h3>Barra de Progresso Vertical (VerticalProgressBar)</h3>
+            <div class="concept-box">
+                <strong>Componente:</strong> <code>pBarTemp</code> — Barra vertical customizada que representa visualmente o nível de temperatura.<br><br>
+                <strong>Implementação:</strong> Classe <code>VerticalProgressBar</code> (herda de <code>ProgressBar</code>) com renderização manual via <code>OnPaint</code>. A barra cresce de baixo para cima, com fundo cinza claro e preenchimento colorido.<br><br>
+                <strong>Comportamento de cor:</strong>
+                <ul>
+                    <li>🟢 <strong>Verde (LimeGreen)</strong> — temperatura abaixo de 75°C (operação normal)</li>
+                    <li>🔴 <strong>Vermelho (Red)</strong> — temperatura igual ou acima de 75°C (alarme ativo)</li>
+                </ul>
+                <strong>Escala:</strong> Mínimo 0, Máximo 100. O valor é limitado a 100 via <code>Math.Min()</code>. O redesenho é forçado via <code>pBarTemp.Invalidate()</code> a cada mensagem recebida.
+            </div>
+
+            <h3>Painel de Alertas</h3>
+            <div class="concept-box">
+                <strong>Componente:</strong> <code>richTextBoxAlertas</code> — Caixa de texto formatada que acumula o histórico de alarmes disparados durante a sessão.<br>
+                <strong>Formato das entradas:</strong> <code>[HH:mm:ss] TIPO ALARME: valor unidade</code><br>
+                <strong>Limpeza:</strong> O painel é esvaziado automaticamente ao acionar o botão Manual (<code>btnManual</code>).
             </div>
         </section>
 
@@ -513,14 +549,29 @@
         <section id="dados">
             <h2>5. Estrutura de Dados Recebidos</h2>
 
-            <p>Os dados são transmitidos pelo simulador Python em formato JSON e desserializados pela aplicação C# para objetos da classe <code>DadosMqtt</code>.</p>
+            <p>Os dados são transmitidos pelo simulador Python em formato JSON e desserializados pela aplicação C# para objetos da classe <code>DadosMqtt</code>, definida dentro da própria <code>Form1</code>.</p>
 
             <h3>Exemplo de Mensagem JSON:</h3>
             <div class="code-box">
                 {<br>
-                &nbsp;&nbsp;"contador": 42,<br>
-                &nbsp;&nbsp;"temperatura": 28.5,<br>
-                &nbsp;&nbsp;"novo_sinal": 156<br>
+                &nbsp;&nbsp;"Temp": 68.5,<br>
+                &nbsp;&nbsp;"Umi": 45.2,<br>
+                &nbsp;&nbsp;"Pres": 1013.1,<br>
+                &nbsp;&nbsp;"Level": 72.0,<br>
+                &nbsp;&nbsp;"Vib": 12.3<br>
+                }
+            </div>
+
+            <h3>Classe DadosMqtt (C#):</h3>
+            <div class="code-box">
+                <strong>Definição da classe interna:</strong><br><br>
+                public class DadosMqtt<br>
+                {<br>
+                &nbsp;&nbsp;public double Temp { get; set; }<br>
+                &nbsp;&nbsp;public double Umi { get; set; }<br>
+                &nbsp;&nbsp;public double Pres { get; set; }<br>
+                &nbsp;&nbsp;public double Level { get; set; }<br>
+                &nbsp;&nbsp;public double Vib { get; set; }<br>
                 }
             </div>
 
@@ -533,40 +584,84 @@
                     <th>Descrição</th>
                 </tr>
                 <tr>
-                    <td><code>contador</code></td>
-                    <td><code>Contador</code></td>
-                    <td>int</td>
-                    <td>Sequência de mensagens (incrementa a cada envio)</td>
-                </tr>
-                <tr>
-                    <td><code>temperatura</code></td>
-                    <td><code>Temperatura</code></td>
+                    <td><code>Temp</code></td>
+                    <td><code>Temp</code></td>
                     <td>double</td>
-                    <td>Valor de temperatura em Celsius (faixa: 20-90°C)</td>
+                    <td>Temperatura em graus Celsius</td>
                 </tr>
                 <tr>
-                    <td><code>novo_sinal</code></td>
-                    <td><code>NovoSinal</code></td>
-                    <td>int</td>
-                    <td>Terceiro parâmetro adicionado na atividade prática</td>
+                    <td><code>Umi</code></td>
+                    <td><code>Umi</code></td>
+                    <td>double</td>
+                    <td>Umidade relativa</td>
+                </tr>
+                <tr>
+                    <td><code>Pres</code></td>
+                    <td><code>Pres</code></td>
+                    <td>double</td>
+                    <td>Pressão do processo</td>
+                </tr>
+                <tr>
+                    <td><code>Level</code></td>
+                    <td><code>Level</code></td>
+                    <td>double</td>
+                    <td>Nível do processo</td>
+                </tr>
+                <tr>
+                    <td><code>Vib</code></td>
+                    <td><code>Vib</code></td>
+                    <td>double</td>
+                    <td>Vibração em mm/s</td>
                 </tr>
             </table>
-
-            <h3>Formatação de Exibição:</h3>
-            <ul>
-                <li><strong>Contador:</strong> Exibido como inteiro simples (ex: 42)</li>
-                <li><strong>Temperatura:</strong> Formatada com 1 casa decimal e unidade (ex: 28.5 °C)</li>
-                <li><strong>Novo Sinal:</strong> Exibido como inteiro simples (ex: 156)</li>
-                <li><strong>Timestamp:</strong> Adicionado automaticamente ao histórico (HH:mm:ss)</li>
-            </ul>
-
-            <h3>Tratamento de Erros:</h3>
-            <p>Se a desserialização JSON falhar ou os dados forem inválidos, a mensagem é ignorada silenciosamente. Se houver erro de conexão, uma mensagem de erro é exibida ao usuário em um MessageBox.</p>
         </section>
 
-        <!-- Seção 6: Referências -->
+        <!-- Seção 6: Alarmes -->
+        <section id="alarmes">
+            <h2>6. Sistema de Alarmes</h2>
+
+            <p>A aplicação implementa verificação automática de condições críticas a cada mensagem recebida. Quando um limiar é ultrapassado, um alerta com timestamp é registrado no painel <code>richTextBoxAlertas</code> e o indicador visual correspondente é alterado.</p>
+
+            <h3>Alarme de Temperatura Alta</h3>
+            <div class="alarm-box">
+                <strong>Condição:</strong> <code>dados.Temp &gt;= 75</code><br>
+                <strong>Ação:</strong> Registra alerta no formato <code>[HH:mm:ss] TEMPERATURA ALTA: {valor}°C</code> e muda a cor da <code>pBarTemp</code> para <strong>Vermelho</strong>.<br>
+                <strong>Normalização:</strong> Abaixo do limiar, a barra retorna à cor <strong>Verde (LimeGreen)</strong>.
+            </div>
+
+            <h3>Alarme de Vibração Alta</h3>
+            <div class="alarm-box">
+                <strong>Condição:</strong> <code>dados.Vib &gt;= 18</code> (mm/s)<br>
+                <strong>Ação:</strong> Registra alerta no formato <code>[HH:mm:ss] VIBRAÇÃO ALTA: {valor} mm/s</code> e muda a cor do label <code>lblVib</code> para <strong>Vermelho</strong>.<br>
+                <strong>Normalização:</strong> Abaixo do limiar, o label retorna à cor <strong>Preta</strong>.
+            </div>
+
+            <h3>Resumo dos Limiares:</h3>
+            <table>
+                <tr>
+                    <th>Sensor</th>
+                    <th>Limiar de Alarme</th>
+                    <th>Indicador Visual</th>
+                    <th>Mensagem Gerada</th>
+                </tr>
+                <tr>
+                    <td>Temperatura</td>
+                    <td>≥ 75°C</td>
+                    <td>Barra <code>pBarTemp</code> fica vermelha</td>
+                    <td>TEMPERATURA ALTA: {valor}°C</td>
+                </tr>
+                <tr>
+                    <td>Vibração</td>
+                    <td>≥ 18 mm/s</td>
+                    <td>Label <code>lblVib</code> fica vermelho</td>
+                    <td>VIBRAÇÃO ALTA: {valor} mm/s</td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- Seção 7: Referências -->
         <section id="referencias">
-            <h2>6. Referências Técnicas</h2>
+            <h2>7. Referências Técnicas</h2>
 
             <p>As informações e tecnologias utilizadas neste projeto foram baseadas em fontes técnicas confiáveis e documentações oficiais:</p>
 
@@ -587,7 +682,7 @@
             </div>
 
             <div class="reference">
-                <strong>[5]</strong> Microsoft. <em>.NET 10.0 Documentation</em>. Disponível em: <a href="https://learn.microsoft.com/en-us/dotnet/" target="_blank">https://learn.microsoft.com/en-us/dotnet/</a>
+                <strong>[5]</strong> Microsoft. <em>.NET Documentation</em>. Disponível em: <a href="https://learn.microsoft.com/en-us/dotnet/" target="_blank">https://learn.microsoft.com/en-us/dotnet/</a>
             </div>
 
             <div class="reference">
@@ -619,21 +714,16 @@
     </footer>
 
     <script>
-        // Scroll suave para âncoras
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-        // Botão voltar ao topo
         const backToTopButton = document.getElementById('backToTop');
 
         window.addEventListener('scroll', () => {
@@ -645,10 +735,7 @@
         });
 
         backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
