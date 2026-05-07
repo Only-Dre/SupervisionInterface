@@ -531,8 +531,8 @@
                 <strong>Implementação:</strong> Classe <code>VerticalProgressBar</code> (herda de <code>ProgressBar</code>) com renderização manual via <code>OnPaint</code>. A barra cresce de baixo para cima, com fundo cinza claro e preenchimento colorido.<br><br>
                 <strong>Comportamento de cor:</strong>
                 <ul>
-                    <li>🟢 <strong>Verde (LimeGreen)</strong> — temperatura abaixo de 75°C (operação normal)</li>
-                    <li>🔴 <strong>Vermelho (Red)</strong> — temperatura igual ou acima de 75°C (alarme ativo)</li>
+                    <li><strong>Verde (LimeGreen)</strong> — temperatura abaixo de 75°C (operação normal)</li>
+                    <li><strong>Vermelho (Red)</strong> — temperatura igual ou acima de 75°C (alarme ativo)</li>
                 </ul>
                 <strong>Escala:</strong> Mínimo 0, Máximo 100. O valor é limitado a 100 via <code>Math.Min()</code>. O redesenho é forçado via <code>pBarTemp.Invalidate()</code> a cada mensagem recebida.
             </div>
